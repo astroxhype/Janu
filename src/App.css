@@ -1,0 +1,102 @@
+/* App-specific styles */
+
+/* Border width utility */
+.border-3 {
+  border-width: 3px;
+}
+
+/* Ensure full viewport coverage */
+.w-screen {
+  width: 100vw;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+/* Custom confetti animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.animate-confetti-fall {
+  animation: confetti-fall linear forwards;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent horizontal overflow */
+body {
+  overflow-x: hidden;
+}
+
+/* Custom focus styles */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Active state for buttons */
+button:active {
+  transform: scale(0.98);
+}
+
+/* Prevent text selection on interactive elements */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Responsive typography scaling */
+@media (max-width: 768px) {
+  .font-display {
+    letter-spacing: -0.02em;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .border-2,
+  .border-3 {
+    border-width: 4px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-confetti-fall {
+    display: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
