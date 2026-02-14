@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 330 100% 50%;
+    --foreground: 0 0% 100%;
+    --card: 330 100% 50%;
+    --card-foreground: 0 0% 100%;
+    --popover: 330 100% 50%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 330 100% 50%;
+    --secondary: 340 100% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 340 100% 60%;
+    --muted-foreground: 0 0% 90%;
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 100%;
+    --input: 0 0% 100%;
+    --ring: 0 0% 100%;
+    --radius: 0rem;
+    
+    --valentine-pink: #FF0066;
+    --valentine-red: #FF0044;
+    --valentine-light: #FF99CC;
+    --valentine-gold: #FFD700;
+    --valentine-white: #FFFFFF;
+    --valentine-black: #000000;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-[#FF0066] text-white;
+    font-family: 'Archivo Black', 'Arial Black', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FF0066;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 0;
+}
+
+/* Brutalist border utility */
+.brutalist-border {
+  border: 3px solid white;
+}
+
+.brutalist-border-thin {
+  border: 2px solid white;
+}
+
+/* Text distortion effect */
+.text-distorted {
+  text-shadow: 
+    2px 0 0 rgba(255,0,0,0.5),
+    -2px 0 0 rgba(0,255,255,0.5),
+    0 2px 0 rgba(255,255,0,0.3);
+  filter: url(#distortion);
+}
+
+/* Pixelated text effect */
+.text-pixelated {
+  image-rendering: pixelated;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+}
+
+/* Heart pulse animation */
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.heart-pulse {
+  animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Rotate animation */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rotate-animation {
+  animation: rotate 10s linear infinite;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.shake-animation {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0% { clip-path: inset(40% 0 61% 0); transform: translate(-2px, 2px); }
+  20% { clip-path: inset(92% 0 1% 0); transform: translate(2px, -2px); }
+  40% { clip-path: inset(43% 0 1% 0); transform: translate(-2px, 2px); }
+  60% { clip-path: inset(25% 0 58% 0); transform: translate(2px, -2px); }
+  80% { clip-path: inset(54% 0 7% 0); transform: translate(-2px, 2px); }
+  100% { clip-path: inset(58% 0 43% 0); transform: translate(2px, -2px); }
+}
+
+.glitch-animation {
+  position: relative;
+}
+
+.glitch-animation::before,
+.glitch-animation::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-animation::before {
+  animation: glitch 2s infinite linear alternate-reverse;
+  color: #FF0044;
+  z-index: -1;
+}
+
+.glitch-animation::after {
+  animation: glitch 3s infinite linear alternate-reverse;
+  color: #FF99CC;
+  z-index: -2;
+}
+
+/* Button hover fill effect */
+.btn-fill-hover {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.btn-fill-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.btn-fill-hover:hover::before {
+  transform: translateY(0);
+}
+
+.btn-fill-hover:hover {
+  color: #FF0066;
+}
+
+/* Scanline effect */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+/* Confetti animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  animation: confetti-fall 3s linear forwards;
+}
+
+/* Love meter fill animation */
+@keyframes fillUp {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.fill-animation {
+  animation: fillUp 2s ease-out forwards;
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.count-animation {
+  animation: countUp 0.5s ease-out forwards;
+}
+
+/* Page transition */
+@keyframes pageEnter {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Reveal animation */
+@keyframes reveal {
+  from { 
+    clip-path: inset(0 100% 0 0);
+  }
+  to { 
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.reveal-animation {
+  animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Selection color */
+::selection {
+  background: white;
+  color: #FF0066;
+}
